@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Game Zone</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #10121c;
+      color: white;
+    }
+
+    header {
+      background: #1b2033;
+      padding: 25px;
+      text-align: center;
+    }
+
+    h1 { color: #65a9ff; }
+
+    main {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+
+    input {
+      width: 90%;
+      padding: 13px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .game {
+      background: #20263a;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    button {
+      background: #438cff;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    #score { font-size: 28px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎮 My Game Zone</h1>
+    <p>Choose a game and have fun!</p>
+  </header>
+
+  <main>
+    <input id="search" placeholder="Search games..."
+           oninput="searchGames()">
+
+    <div class="games" id="games">
+      <div class="game">
+        <h2>Clicker Game</h2>
+        <p>Click to earn points!</p>
+        <p id="score">0 points</p>
+        <button onclick="addPoint()">Click me!</button>
+      </div>
+
+      <div class="game">
+        <h2>My Next Game</h2>
+        <p>Add another game here.</p>
+        <button onclick="alert('Your next game goes here!')">
+          Play
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let points = 0;
+
+    function addPoint() {
+      points++;
+      document.getElementById("score").textContent =
+        points + " points";
+    }
+
+    function searchGames() {
+      const query = document.getElementById("search")
+        .value.toLowerCase();
+
+      document.querySelectorAll(".game").forEach(game => {
+        game.style.display =
+          game.textContent.toLowerCase().includes(query)
+            ? ""
+            : "none";
+      });
+    }
+  </script>
+</body>
+</html>
